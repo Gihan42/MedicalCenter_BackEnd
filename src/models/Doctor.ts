@@ -38,5 +38,5 @@ const DoctorScheema =new Schema(
     }
    
 );
-export const doctor=model<IDoctor>("Doctor",DoctorScheema)
+export const Doctor=model<IDoctor>("Doctor",DoctorScheema)
 

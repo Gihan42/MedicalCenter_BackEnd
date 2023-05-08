@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.doctor = void 0;
+exports.Doctor = void 0;
 const mongoose_1 = require("mongoose");
 ;
 const DoctorScheema = new mongoose_1.Schema({
@@ -29,4 +29,4 @@ const DoctorScheema = new mongoose_1.Schema({
         required: true
     }
 });
-exports.doctor = (0, mongoose_1.model)("Doctor", DoctorScheema);
+exports.Doctor = (0, mongoose_1.model)("Doctor", DoctorScheema);

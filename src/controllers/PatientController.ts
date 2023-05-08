@@ -12,9 +12,7 @@ export default class PatientController{
         try {
             let patient= new Patient (req.body);
             let savePatient=  await patient.save();
-               console.log()
-            
-    
+               console.log()    
             return res.status(200).json({message:"Patient saved",responseData:savePatient});
         } catch (error:unknown) {
             if(error instanceof Error){

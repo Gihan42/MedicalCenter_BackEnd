@@ -9,10 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Doctor_1 = require("../models/Doctor");
 class DoctorController {
     constructor() {
         this.saveDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res;
+            try {
+                let doctor = new Doctor_1.Doctor(req.body);
+                let saveDoctor = yield doctor.save();
+                console.log();
+                return res.status(200).json({ message: "Doctor saved", responseData: saveDoctor });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error" });
+                }
+            }
         });
         this.getAllDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
             return res;

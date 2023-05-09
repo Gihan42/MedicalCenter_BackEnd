@@ -6,7 +6,7 @@ export default class PatientController{
 
 
 
-    savePatient:RequestHandler = async (req:Request,res:Response)=> {
+    savePatient:RequestHandler = async (req:Request,res:Response):Promise<Response>=> {
         console.log("JHGAJSHFGJ");
 
         try {

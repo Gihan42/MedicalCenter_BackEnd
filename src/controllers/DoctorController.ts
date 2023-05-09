@@ -66,6 +66,7 @@ export default class DoctorController{
             }else{
                 return res.status(500).json({message:"unknow error!"})
             }
-        }      };
+        }     
+     };
 
 }

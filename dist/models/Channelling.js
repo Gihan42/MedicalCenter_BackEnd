@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.channelling = void 0;
+exports.Channelling = void 0;
 const mongoose_1 = require("mongoose");
 ;
 const ChannellingScheema = new mongoose_1.Schema({
@@ -12,9 +12,9 @@ const ChannellingScheema = new mongoose_1.Schema({
         type: String,
         required: true
     },
-    pchanneling_Date: {
-        type: Number,
+    channelingDate: {
+        type: String,
         required: true
     }
 });
-exports.channelling = (0, mongoose_1.model)("Channelling", ChannellingScheema);
+exports.Channelling = (0, mongoose_1.model)("Channelling", ChannellingScheema);

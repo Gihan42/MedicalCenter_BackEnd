@@ -3,7 +3,7 @@ import { Document, Schema, model } from "mongoose";
 interface IChannelling extends Document{
         appoinmentNo:number;
         userName:string;
-        channeling_Date:string;
+        channelingDate:string;
         
 };
 const ChannellingScheema =new Schema(
@@ -17,12 +17,12 @@ const ChannellingScheema =new Schema(
             type:String,
             required:true
         },
-        pchanneling_Date:{
-            type:Number,
+        channelingDate:{
+            type:String,
             required:true
         }
     }
    
 );
-export const channelling=model<IChannelling>("Channelling",ChannellingScheema)
+export const Channelling=model<IChannelling>("Channelling",ChannellingScheema)
 

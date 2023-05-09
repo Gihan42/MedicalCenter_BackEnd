@@ -9,16 +9,18 @@ class ChannellingDetailsRoutes {
     constructor() {
         this.router = express_1.default.Router();
         this.controller = new ChannellingController_1.default();
-        this.configRoutes = () => {
-            this.router.post("/", this.controller.saveChannelingDetails);
-            this.router.get("/", this.controller.getAllChannelingDetails);
-            this.router.put("/", this.controller.updateChannelingDetails);
-            this.router.delete("/", this.controller.deleteChannelingDetails);
-        };
-        this.getRouter = () => {
-            return this.router;
-        };
-        this.configRoutes();
+        // constructor(){
+        //   this.configRoutes();
+        // }
+        // private configRoutes = (): void => {
+        //   this.router.post("/",this.controller.saveChannelingDetails);
+        //   this.router.get("/",this.controller.getAllChannelingDetails);
+        //   this.router.put("/",this.controller.updateChannelingDetails);
+        //   this.router.delete("/",this.controller.deleteChannelingDetails);
+        // };
+        // public getRouter = () : Router =>{
+        //   return this.router
+        // }
     }
 }
 exports.default = ChannellingDetailsRoutes;

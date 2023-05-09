@@ -1,21 +1,21 @@
 import { Document, Schema, model } from "mongoose";
 
 interface IDoctor extends Document{
-        d_Id:string;
-        d_Name:string;
+        DId:string;
+        DName:string;
         position:string;
         time:string;
         contact:string;
-        d_Charge:number;
+        DCharge:number;
 };
 const DoctorScheema =new Schema(
 
     {
-        d_Id:{
+        DId:{
             type:String,
             required:true
         },
-        d_Name:{
+        DName:{
             type:String,
             required:true
         },
@@ -31,12 +31,11 @@ const DoctorScheema =new Schema(
             type:String,
             required:true
         },
-        d_Charge:{
+        DCharge:{
             type:Number,
             required:true
         }
     }
    
 );
-export const Doctor=model<IDoctor>("Doctor",DoctorScheema)
-
+export const Doctor = model<IDoctor>("Doctor",DoctorScheema);

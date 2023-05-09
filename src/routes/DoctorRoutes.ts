@@ -11,10 +11,10 @@ export default class DoctorRoutes{
   }
   
   private configRoutes = (): void => {
-    this.router.post("/r",this.controller.saveDoctor);
+    this.router.post("/",this.controller.saveDoctor);
     this.router.get("/",this.controller.getAllDoctor);
-    this.router.put("/:d_Id",this.controller.updateDoctor);
-    this.router.delete("/:d_Id",this.controller.deleteDoctor);
+    this.router.put("/:DId",this.controller.updateDoctor);
+    this.router.delete("/:DId",this.controller.deleteDoctor);
 
   };
   public getRouter = () : Router =>{

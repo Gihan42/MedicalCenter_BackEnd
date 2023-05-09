@@ -4,11 +4,11 @@ exports.Doctor = void 0;
 const mongoose_1 = require("mongoose");
 ;
 const DoctorScheema = new mongoose_1.Schema({
-    d_Id: {
+    DId: {
         type: String,
         required: true
     },
-    d_Name: {
+    DName: {
         type: String,
         required: true
     },
@@ -24,7 +24,7 @@ const DoctorScheema = new mongoose_1.Schema({
         type: String,
         required: true
     },
-    d_Charge: {
+    DCharge: {
         type: Number,
         required: true
     }

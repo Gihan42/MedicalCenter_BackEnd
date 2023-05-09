@@ -10,10 +10,10 @@ class DoctorRoutes {
         this.router = express_1.default.Router();
         this.controller = new DoctorController_1.default();
         this.configRoutes = () => {
-            this.router.post("/r", this.controller.saveDoctor);
+            this.router.post("/", this.controller.saveDoctor);
             this.router.get("/", this.controller.getAllDoctor);
-            this.router.put("/:d_Id", this.controller.updateDoctor);
-            this.router.delete("/:d_Id", this.controller.deleteDoctor);
+            this.router.put("/:DId", this.controller.updateDoctor);
+            this.router.delete("/:DId", this.controller.deleteDoctor);
         };
         this.getRouter = () => {
             return this.router;

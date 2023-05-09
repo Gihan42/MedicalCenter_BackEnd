@@ -1,11 +1,10 @@
 import {config} from "dotenv"
 config();
-import db from "mongoose"
+import express, { Request, Response } from "express";
+import db from "mongoose";
 import routes from "./routes";
 import { json, urlencoded } from "body-parser";
 import cors from "cors";
-import express, { Request, Response } from "express";
-
 // Create the express app
 const app = express();
 
@@ -48,5 +47,5 @@ db.connect(process.env.MONGO_DB_URL!).then(()=>{
             console.log('server is running on port 5000')
         });
 }).catch((error)=>{
-        console.log("something went wrong")
+        console.log("something went wrong",error.message)
 });

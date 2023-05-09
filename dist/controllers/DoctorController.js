@@ -13,11 +13,27 @@ const Doctor_1 = require("../models/Doctor");
 class DoctorController {
     constructor() {
         this.saveDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            console.log("doctor");
             try {
                 let doctor = new Doctor_1.Doctor(req.body);
                 let saveDoctor = yield doctor.save();
-                console.log();
+                console.log("saved");
                 return res.status(200).json({ message: "Doctor saved", responseData: saveDoctor });
+            }
+            catch (error) {
+                console.log("discard");
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error" });
+                }
+            }
+        });
+        this.getAllDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                let doctor = yield Doctor_1.Doctor.find();
+                return res.status(200).json({ message: "Doctors` Loaded", responseData: doctor });
             }
             catch (error) {
                 if (error instanceof Error) {
@@ -28,14 +44,40 @@ class DoctorController {
                 }
             }
         });
-        this.getAllDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res;
-        });
         this.updateDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res;
+            try {
+                let { DId } = req.params;
+                let updatedDoctor = yield Doctor_1.Doctor.findOneAndUpdate({ DId: DId }, req.body, {
+                    new: true,
+                });
+                return res.status(200).json({ message: "Successfully Updated", responseData: updatedDoctor });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error!" });
+                }
+            }
         });
         this.deleteDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res;
+            try {
+                let { DId } = req.params;
+                let deletedDoctor = yield Doctor_1.Doctor.findOneAndDelete({ DId: DId });
+                if (!deletedDoctor) {
+                    throw new Error("Id Not Found!");
+                }
+                return res.status(200).json({ message: "Successfully deleted", responseData: deletedDoctor });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error!" });
+                }
+            }
         });
     }
 }

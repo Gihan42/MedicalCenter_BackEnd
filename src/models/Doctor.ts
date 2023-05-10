@@ -7,6 +7,7 @@ interface IDoctor extends Document{
         time:string;
         contact:string;
         DCharge:number;
+        wardNo:number;
 };
 const DoctorScheema =new Schema(
 
@@ -32,6 +33,10 @@ const DoctorScheema =new Schema(
             required:true
         },
         DCharge:{
+            type:Number,
+            required:true
+        },
+        wardNo:{
             type:Number,
             required:true
         }

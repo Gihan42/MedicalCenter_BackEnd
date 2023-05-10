@@ -27,6 +27,10 @@ const DoctorScheema = new mongoose_1.Schema({
     DCharge: {
         type: Number,
         required: true
+    },
+    wardNo: {
+        type: Number,
+        required: true
     }
 });
 exports.Doctor = (0, mongoose_1.model)("Doctor", DoctorScheema);

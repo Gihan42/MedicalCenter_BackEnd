@@ -44,6 +44,21 @@ class DoctorController {
                 }
             }
         });
+        this.getDoctorByPosition = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                let { position } = req.params;
+                let doctor = yield Doctor_1.Doctor.find({ position: position });
+                return res.status(200).json({ message: "Doctors` Loaded", responseData: doctor });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error" });
+                }
+            }
+        });
         this.updateDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 let { DId } = req.params;

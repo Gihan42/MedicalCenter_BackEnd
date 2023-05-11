@@ -35,6 +35,21 @@ export default class DoctorController{
             }
         }
     };
+    getDoctorByPosition:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
+
+        try {
+            let {position} =  req.params;
+            let doctor = await Doctor.find({position:position})
+            return res.status(200).json({message:"Doctors` Loaded",responseData:doctor})
+
+        } catch (error:unknown) {
+            if(error instanceof Error){
+                return res.status(500).json({message:error})
+            }else{
+                return res.status(500).json({message:"unknow error"})
+            }
+        }
+    };
     updateDoctor:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
 
         try {

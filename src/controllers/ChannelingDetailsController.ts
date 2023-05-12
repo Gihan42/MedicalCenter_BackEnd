@@ -1,6 +1,6 @@
 import { Request, RequestHandler, Response } from "express";
 
-export default class ChannelingDEtailsController{
+export default class ChannelingDetailsController{
     
 
     saveChannellingDEtails:RequestHandler = async (req:Request,res:Response):Promise<Response> => {

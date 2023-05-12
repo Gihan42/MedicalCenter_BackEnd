@@ -11,6 +11,6 @@ const baseUrl ="/api/v1/"
 router.use(`${baseUrl}patient`,new PatientRoutes().getRouter());
 router.use(`${baseUrl}doctor`,new DoctorRoutes().getRouter());
 router.use(`${baseUrl}channeling`,new ChannelingRoutes().getRouter());
-// router.use(`${baseUrl}channelingDetails`,new ChannellingDetailsRoutes().getRouter());
+//  router.use(`${baseUrl}channelingDetails`,new ChannellingDetailsRoutes().getRouter());
 
 export default router;

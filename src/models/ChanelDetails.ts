@@ -59,5 +59,5 @@ const ChannellingDetailsScheema =new Schema(
     }
    
 );
-export const channellingDetails=model<IChannellingDetails>("Channelling",ChannellingDetailsScheema)
+export const ChannellingDetails=model<IChannellingDetails>("ChannellingDetails",ChannellingDetailsScheema)
 

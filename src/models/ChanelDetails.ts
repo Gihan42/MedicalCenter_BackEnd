@@ -2,6 +2,7 @@ import { Document, Schema, model } from "mongoose";
 
 interface IChannellingDetails extends Document{
         appoinmentNo:number;
+        p_Name:string;
         p_Age:number;
         p_Address:string;
         appoinmentDate:string;
@@ -17,6 +18,10 @@ const ChannellingDetailsScheema =new Schema(
     {
         appoinmentNo:{
             type:Number,
+            required:true
+        },
+        p_Name:{
+            type:String,
             required:true
         },
         p_Age:{

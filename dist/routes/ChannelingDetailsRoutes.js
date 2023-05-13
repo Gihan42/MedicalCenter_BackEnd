@@ -4,23 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const ChannellingController_1 = __importDefault(require("../controllers/ChannellingController"));
+const ChannelingDetailsController_1 = __importDefault(require("../controllers/ChannelingDetailsController"));
 class ChannellingDetailsRoutes {
     constructor() {
         this.router = express_1.default.Router();
-        this.controller = new ChannellingController_1.default();
-        // constructor(){
-        //   this.configRoutes();
-        // }
-        // private configRoutes = (): void => {
-        //   this.router.post("/",this.controller.saveChannelingDetails);
-        //   this.router.get("/",this.controller.getAllChannelingDetails);
-        //   this.router.put("/",this.controller.updateChannelingDetails);
-        //   this.router.delete("/",this.controller.deleteChannelingDetails);
-        // };
-        // public getRouter = () : Router =>{
-        //   return this.router
-        // }
+        this.controller = new ChannelingDetailsController_1.default();
+        this.configRoutes = () => {
+            this.router.post("/", this.controller.saveChannellingDEtails);
+            this.router.get("/", this.controller.getAllChannellingDEtails);
+            this.router.put("/", this.controller.updateChannellingDEtails);
+            this.router.delete("/", this.controller.deleteChannellingDEtails);
+        };
+        this.getRouter = () => {
+            return this.router;
+        };
+        this.configRoutes();
     }
 }
 exports.default = ChannellingDetailsRoutes;

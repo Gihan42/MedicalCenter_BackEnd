@@ -1,11 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.channellingDetails = void 0;
+exports.ChannellingDetails = void 0;
 const mongoose_1 = require("mongoose");
 ;
 const ChannellingDetailsScheema = new mongoose_1.Schema({
     appoinmentNo: {
         type: Number,
+        required: true
+    },
+    p_Name: {
+        type: String,
         required: true
     },
     p_Age: {
@@ -45,4 +49,4 @@ const ChannellingDetailsScheema = new mongoose_1.Schema({
         required: true
     }
 });
-exports.channellingDetails = (0, mongoose_1.model)("Channelling", ChannellingDetailsScheema);
+exports.ChannellingDetails = (0, mongoose_1.model)("ChannellingDetails", ChannellingDetailsScheema);

@@ -71,5 +71,19 @@ export default class PatientController{
             }
         }  
     };
+    searchPatient:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
+
+        try {
+            let {email}=req.params;
+            let patient= await Patient.findOne({email:email});
+            return res.status(200).json({message:"successfully loaded...!",responseData:patient})
+        } catch (error:unknown) {
+            if(error instanceof Error){
+                return res.status(500).json({message:error.message})
+            }else{
+                return res.status(500).json({message:"unknow error!"})
+            }
+        }     
+     };
 
 }

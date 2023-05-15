@@ -78,6 +78,21 @@ class PatientController {
                 }
             }
         });
+        this.searchPatient = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                let { email } = req.params;
+                let patient = yield Patient_1.Patient.findOne({ email: email });
+                return res.status(200).json({ message: "successfully loaded...!", responseData: patient });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error!" });
+                }
+            }
+        });
     }
 }
 exports.default = PatientController;

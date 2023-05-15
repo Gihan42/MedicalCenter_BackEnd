@@ -15,6 +15,7 @@ class DoctorRoutes {
             this.router.put("/:DId", this.controller.updateDoctor);
             this.router.delete("/:DId", this.controller.deleteDoctor);
             this.router.get("/:DId", this.controller.searchDoctor);
+            this.router.get("/:DName", this.controller.searchDoctorByName);
             this.router.get("/:position", this.controller.getDoctorByPosition);
         };
         this.getRouter = () => {

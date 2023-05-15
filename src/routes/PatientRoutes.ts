@@ -14,6 +14,7 @@ export default class PatientRoutes{
     this.router.post("/",this.controller.savePatient);
     this.router.get("/",this.controller.getAllPatient);
     this.router.put("/:email",this.controller.updatePatient);
+    this.router.get("/:email",this.controller.searchPatient);
     this.router.delete("/:email",this.controller.deletePatient);
 
   }

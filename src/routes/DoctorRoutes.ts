@@ -15,6 +15,7 @@ export default class DoctorRoutes{
     this.router.get("/",this.controller.getAllDoctor);
     this.router.put("/:DId",this.controller.updateDoctor);
     this.router.delete("/:DId",this.controller.deleteDoctor);
+    this.router.get("/:DId",this.controller.searchDoctor);
     this.router.get("/:position",this.controller.getDoctorByPosition);
 
   };

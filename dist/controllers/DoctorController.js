@@ -94,6 +94,21 @@ class DoctorController {
                 }
             }
         });
+        this.searchDoctor = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                let { DId } = req.params;
+                let doctor = yield Doctor_1.Doctor.findOne({ DId: DId });
+                return res.status(200).json({ message: "successfully loaded...!", responseData: doctor });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error!" });
+                }
+            }
+        });
     }
 }
 exports.default = DoctorController;

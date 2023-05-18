@@ -48,7 +48,8 @@ class DoctorController {
             try {
                 let { position } = req.params;
                 let doctor = yield Doctor_1.Doctor.find({ position: position });
-                return res.status(200).json({ message: "Doctors` Loaded", responseData: doctor });
+                console.log("Data", doctor);
+                return res.status(200).json({ message: "Doctors Loaded", responseData: doctor });
             }
             catch (error) {
                 if (error instanceof Error) {
@@ -121,6 +122,23 @@ class DoctorController {
                 }
                 else {
                     return res.status(500).json({ message: "unknow error!" });
+                }
+            }
+        });
+        this.getAllDoctors = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                let { position } = req.params;
+                console.log(position);
+                let positions = yield Doctor_1.Doctor.find({ position: position });
+                console.log("position");
+                return res.status(200).json({ responseData: positions });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "Unknown error occured." });
                 }
             }
         });

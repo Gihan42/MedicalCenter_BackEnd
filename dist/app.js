@@ -15,7 +15,7 @@ const app = (0, express_1.default)();
 // allow CORS
 // app.use(cors());
 // Here you can add more origins to allow CORS
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
 app.use((0, cors_1.default)({
     origin: (origin, callback) => {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {

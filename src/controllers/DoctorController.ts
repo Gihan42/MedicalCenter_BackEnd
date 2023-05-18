@@ -40,7 +40,8 @@ export default class DoctorController{
         try {
             let {position} =  req.params;
             let doctor = await Doctor.find({position:position})
-            return res.status(200).json({message:"Doctors` Loaded",responseData:doctor})
+            console.log("Data",doctor);
+            return res.status(200).json({message:"Doctors Loaded",responseData:doctor})
 
         } catch (error:unknown) {
             if(error instanceof Error){
@@ -111,5 +112,21 @@ export default class DoctorController{
             }
         }     
      };
+     getAllDoctors:RequestHandler =async (req:Request,res:Response):Promise<Response> => {
+        try {
+            let {position}=req.params;
+            console.log(position);
+            
+            let positions = await Doctor.find({position:position});
+            console.log("position");
+            return res.status(200).json({ responseData: positions });
+          } catch (error: unknown) {
+            if (error instanceof Error) {
+              return res.status(500).json({ message: error.message });
+            } else {
+              return res.status(500).json({ message: "Unknown error occured." });
+            }
+          }
+    }
 
 }

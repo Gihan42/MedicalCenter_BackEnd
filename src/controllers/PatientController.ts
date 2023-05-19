@@ -40,12 +40,13 @@ export default class PatientController{
     };
     updatePatient:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
 
-        try {
+            try {
             let {email} = req.params ;
-            let updatedPatient=await Patient.findOneAndUpdate({email:email},req.body,{
+            let updatedPatient=await Patient .findOneAndUpdate({email:email},req.body,{
                 new:true,
             });
-            return res.status(200).json({message:"Successfully Updated",responseData:updatedPatient})
+                console.log("updated patient")
+            return res.status(200).json({message:"Successfully Updated",responseData:updatedPatient});
         } catch (error:unknown) {
             if(error instanceof Error){
                 return res.status(500).json({message:error.message})

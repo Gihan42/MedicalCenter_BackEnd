@@ -49,6 +49,7 @@ class PatientController {
                 let updatedPatient = yield Patient_1.Patient.findOneAndUpdate({ email: email }, req.body, {
                     new: true,
                 });
+                console.log("updated patient");
                 return res.status(200).json({ message: "Successfully Updated", responseData: updatedPatient });
             }
             catch (error) {

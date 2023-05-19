@@ -8,7 +8,7 @@ export default class ChannelingController{
 
         try {
             let channel = new Channelling (req.body);
-            let saveChannel =  await channel.save();
+            let saveChannel = await channel.save();
                console.log("saved")    
             return res.status(200).json({message:"save channel",responseData:saveChannel});
         } catch (error:unknown) {

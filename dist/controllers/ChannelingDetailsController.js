@@ -9,19 +9,76 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const ChannellingDetails_1 = require("../models/ChannellingDetails");
 class ChannelingDetailsController {
     constructor() {
         this.saveChannellingDEtails = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res;
+            console.log("channellingdetails");
+            try {
+                let channellingDetails = new ChannellingDetails_1.ChannellingDetails(req.body);
+                let saveChannellingDetails = yield channellingDetails.save();
+                console.log("channellingDetails saved");
+                return res.status(200).json({ message: "save channel", responseData: saveChannellingDetails });
+            }
+            catch (error) {
+                console.log("discard");
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error" });
+                }
+            }
         });
         this.getAllChannellingDEtails = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res;
+            try {
+                let channellingdetails = new ChannellingDetails_1.ChannellingDetails(req.body);
+                return res.status(200).json({ message: "ChannellingDetails Loaded", responseData: channellingdetails });
+                console.log(channellingdetails);
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error" });
+                }
+            }
         });
         this.updateChannellingDEtails = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res;
+            try {
+                let { appoinmentNo } = req.params;
+                let updatechannellingdetails = yield ChannellingDetails_1.ChannellingDetails.findOneAndUpdate({ appoinmentNo: appoinmentNo }, req.body, {
+                    new: true,
+                });
+                return res.status(200).json({ message: "Successfully Updated", responseData: updatechannellingdetails });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error!" });
+                }
+            }
         });
         this.deleteChannellingDEtails = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            return res;
+            try {
+                let { appoinmentNo } = req.params;
+                let deletechannellingdetails = yield ChannellingDetails_1.ChannellingDetails.findOneAndDelete({ appoinmentNo: appoinmentNo });
+                if (!deletechannellingdetails) {
+                    throw new Error("Email Not Found!");
+                }
+                return res.status(200).json({ message: "Successfully deleted", responseData: deletechannellingdetails });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error!" });
+                }
+            }
         });
     }
 }

@@ -58,6 +58,7 @@ export default class ChannelingDetailsController{
             if(!deletechannellingdetails){
                 throw new Error("Email Not Found!") 
             }
+              console.log("deleted Channelling")
             return res.status(200).json({message:"Successfully deleted",responseData:deletechannellingdetails})
         } catch (error:unknown) {
             if(error instanceof Error){
@@ -67,5 +68,34 @@ export default class ChannelingDetailsController{
             }
         }  
     };
+     searchAppoinment:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
+
+        try {
+            let {appoinmentNo}=req.params;
+            let searchAppoinment= await ChannellingDetails.findOne({appoinmentNo:appoinmentNo});
+            return res.status(200).json({message:"successfully loaded.AppoinmentDe-tails..!",responseData:searchAppoinment})
+        } catch (error:unknown) {
+            if(error instanceof Error){
+                return res.status(500).json({message:error.message})
+            }else{
+                return res.status(500).json({message:"unknow error!"})
+            }
+        }     
+     };
+      searchAppoinmentByEmail:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
+
+        try {
+            let {appoinmentDate}=req.params;
+            let searchAppoinment= await ChannellingDetails.findOne({appoinmentDate:appoinmentDate});
+            console.log(searchAppoinment);            
+            return res.status(200).json({ message: "successfully loaded.AppoinmentDe-tails By Email..!", responseData: searchAppoinment })
+        } catch (error:unknown) {
+            if(error instanceof Error){
+                return res.status(500).json({message:error.message})
+            }else{
+                return res.status(500).json({message:"unknow error!"})
+            }
+        }     
+     };
 
 }

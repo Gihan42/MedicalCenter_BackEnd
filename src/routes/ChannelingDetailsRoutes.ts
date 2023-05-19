@@ -13,10 +13,12 @@ export default class ChannellingDetailsRoutes{
   private configRoutes = (): void => {
     this.router.post("/",this.controller.saveChannellingDEtails);
     this.router.get("/",this.controller.getAllChannellingDEtails);
-    this.router.put("/",this.controller.updateChannellingDEtails);
-    this.router.delete("/",this.controller.deleteChannellingDEtails);
+    this.router.put("/:appoinmentNo",this.controller.updateChannellingDEtails);
+    this.router.delete("/:appoinmentNo", this.controller.deleteChannellingDEtails);
+    this.router.get("/:appoinmentNo", this.controller.searchAppoinment);
+    this.router.get("/search/:appoinmentDate",this.controller.searchAppoinmentByEmail);
 
-  };
+ };
   public getRouter = () : Router =>{
     return this.router
   }

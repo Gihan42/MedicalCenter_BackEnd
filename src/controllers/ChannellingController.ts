@@ -1,5 +1,6 @@
 import { Request, RequestHandler, Response } from "express";
 import { Channelling } from "../models/Channelling";
+import { ChannellingDetails } from "../models/ChannellingDetails";
 
 export default class ChannelingController{
    
@@ -7,10 +8,23 @@ export default class ChannelingController{
     saveChanneling:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
 
         try {
-            let channel = new Channelling (req.body);
+
+            let last = await Channelling.find({}).sort({ _id: -1 }).limit(1);
+
+            let appoinmentNo = last[0].appoinmentNo + 1;
+
+            let channel = new Channelling(req.body.channelling);      
+
+            channel.appoinmentNo = appoinmentNo;
             let saveChannel = await channel.save();
-               console.log("saved")    
-            return res.status(200).json({message:"save channel",responseData:saveChannel});
+            console.log(saveChannel)
+            if (saveChannel) {
+                let channellingDetails = new ChannellingDetails(req.body.channellingDetail);
+                channellingDetails.appoinmentNo = appoinmentNo;
+                let saveChannellingDetails = await channellingDetails.save();   
+                console.log("saveChannellingDetails")
+            }
+            return res.status(200).json({message:"save channel",responseData:appoinmentNo});
         } catch (error:unknown) {
                console.log("discard")
             if(error instanceof Error){

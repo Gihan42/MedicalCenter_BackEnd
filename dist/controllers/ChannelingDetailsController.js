@@ -69,7 +69,39 @@ class ChannelingDetailsController {
                 if (!deletechannellingdetails) {
                     throw new Error("Email Not Found!");
                 }
+                console.log("deleted Channelling");
                 return res.status(200).json({ message: "Successfully deleted", responseData: deletechannellingdetails });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error!" });
+                }
+            }
+        });
+        this.searchAppoinment = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                let { appoinmentNo } = req.params;
+                let searchAppoinment = yield ChannellingDetails_1.ChannellingDetails.findOne({ appoinmentNo: appoinmentNo });
+                return res.status(200).json({ message: "successfully loaded.AppoinmentDe-tails..!", responseData: searchAppoinment });
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    return res.status(500).json({ message: error.message });
+                }
+                else {
+                    return res.status(500).json({ message: "unknow error!" });
+                }
+            }
+        });
+        this.searchAppoinmentByEmail = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                let { appoinmentDate } = req.params;
+                let searchAppoinment = yield ChannellingDetails_1.ChannellingDetails.findOne({ appoinmentDate: appoinmentDate });
+                console.log(searchAppoinment);
+                return res.status(200).json({ message: "successfully loaded.AppoinmentDe-tails By Email..!", responseData: searchAppoinment });
             }
             catch (error) {
                 if (error instanceof Error) {

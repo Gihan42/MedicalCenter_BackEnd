@@ -11,7 +11,8 @@ interface IChannellingDetails extends Document{
         wardNo:number;
         bill:number;
         paymentDAte:string;
-        time:string;
+    time: string;
+    emial: string;
 };
 const ChannellingDetailsScheema =new Schema(
 
@@ -57,6 +58,10 @@ const ChannellingDetailsScheema =new Schema(
             required:true
         },
         time:{
+            type:String,
+            required:true
+        },
+        email:{
             type:String,
             required:true
         }

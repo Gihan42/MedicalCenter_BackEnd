@@ -10,14 +10,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Channelling_1 = require("../models/Channelling");
+const ChannellingDetails_1 = require("../models/ChannellingDetails");
 class ChannelingController {
     constructor() {
         this.saveChanneling = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let channel = new Channelling_1.Channelling(req.body);
+                let last = yield Channelling_1.Channelling.find({}).sort({ _id: -1 }).limit(1);
+                let appoinmentNo = last[0].appoinmentNo + 1;
+                let channel = new Channelling_1.Channelling(req.body.channelling);
+                channel.appoinmentNo = appoinmentNo;
                 let saveChannel = yield channel.save();
-                console.log("saved");
-                return res.status(200).json({ message: "save channel", responseData: saveChannel });
+                console.log(saveChannel);
+                if (saveChannel) {
+                    let channellingDetails = new ChannellingDetails_1.ChannellingDetails(req.body.channellingDetail);
+                    channellingDetails.appoinmentNo = appoinmentNo;
+                    let saveChannellingDetails = yield channellingDetails.save();
+                    console.log("saveChannellingDetails");
+                }
+                return res.status(200).json({ message: "save channel", responseData: appoinmentNo });
             }
             catch (error) {
                 console.log("discard");

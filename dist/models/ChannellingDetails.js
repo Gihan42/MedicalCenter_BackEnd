@@ -48,9 +48,5 @@ const ChannellingDetailsScheema = new mongoose_1.Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true
-    }
 });
 exports.ChannellingDetails = (0, mongoose_1.model)("ChannellingDetails", ChannellingDetailsScheema);

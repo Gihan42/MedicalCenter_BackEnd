@@ -86,9 +86,9 @@ export default class ChannelingDetailsController{
 
         try {
             let {appoinmentDate}=req.params;
-            let searchAppoinment= await ChannellingDetails.findOne({appoinmentDate:appoinmentDate});
+            let searchAppoinment= await ChannellingDetails.find({appoinmentDate:appoinmentDate});
             console.log(searchAppoinment);            
-            return res.status(200).json({ message: "successfully loaded.AppoinmentDe-tails By Email..!", responseData: searchAppoinment })
+            return res.status(200).json({ message: "successfully loaded.AppoinmentDe-tails By date..!", responseData: searchAppoinment })
         } catch (error:unknown) {
             if(error instanceof Error){
                 return res.status(500).json({message:error.message})

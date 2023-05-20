@@ -99,9 +99,9 @@ class ChannelingDetailsController {
         this.searchAppoinmentByEmail = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 let { appoinmentDate } = req.params;
-                let searchAppoinment = yield ChannellingDetails_1.ChannellingDetails.findOne({ appoinmentDate: appoinmentDate });
+                let searchAppoinment = yield ChannellingDetails_1.ChannellingDetails.find({ appoinmentDate: appoinmentDate });
                 console.log(searchAppoinment);
-                return res.status(200).json({ message: "successfully loaded.AppoinmentDe-tails By Email..!", responseData: searchAppoinment });
+                return res.status(200).json({ message: "successfully loaded.AppoinmentDe-tails By date..!", responseData: searchAppoinment });
             }
             catch (error) {
                 if (error instanceof Error) {

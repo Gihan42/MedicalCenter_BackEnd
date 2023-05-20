@@ -22,17 +22,18 @@ export default class ChannelingDetailsController{
         }   
       };
     getAllChannellingDEtails:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
-        try {
-            let channellingdetails= new ChannellingDetails (req.body);
-            return res.status(200).json({ message: "ChannellingDetails Loaded", responseData: channellingdetails });
-            console.log(channellingdetails)
-        } catch (error) {
+       try {
+            let channellingDetails = await ChannellingDetails.find()
+            return res.status(200).json({message:"Patient Loaded",responseData:channellingDetails})
+
+        } catch (error:unknown) {
             if(error instanceof Error){
                 return res.status(500).json({message:error})
             }else{
                 return res.status(500).json({message:"unknow error"})
             }
         }
+
     };
     updateChannellingDEtails:RequestHandler = async (req:Request,res:Response):Promise<Response> => {
      try {

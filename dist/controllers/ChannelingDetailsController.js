@@ -32,9 +32,8 @@ class ChannelingDetailsController {
         });
         this.getAllChannellingDEtails = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let channellingdetails = new ChannellingDetails_1.ChannellingDetails(req.body);
-                return res.status(200).json({ message: "ChannellingDetails Loaded", responseData: channellingdetails });
-                console.log(channellingdetails);
+                let channellingDetails = yield ChannellingDetails_1.ChannellingDetails.find();
+                return res.status(200).json({ message: "Patient Loaded", responseData: channellingDetails });
             }
             catch (error) {
                 if (error instanceof Error) {

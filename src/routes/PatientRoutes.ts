@@ -11,6 +11,7 @@ export default class PatientRoutes{
   }
   
   private configRoutes = (): void => {
+    this.router.post("/login",this.controller.login);
     this.router.post("/",this.controller.savePatient);
     this.router.get("/",this.controller.getAllPatient);
     this.router.put("/:email",this.controller.updatePatient);

@@ -10,6 +10,7 @@ class PatientRoutes {
         this.router = express_1.default.Router();
         this.controller = new PatientController_1.default();
         this.configRoutes = () => {
+            this.router.post("/login", this.controller.login);
             this.router.post("/", this.controller.savePatient);
             this.router.get("/", this.controller.getAllPatient);
             this.router.put("/:email", this.controller.updatePatient);

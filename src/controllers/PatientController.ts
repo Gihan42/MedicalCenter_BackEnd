@@ -68,7 +68,7 @@ export default class PatientController{
     
           res.cookie('token', token, {
             path: '/',
-            expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
+            expires: new Date(Date.now() + 86400000), 
             secure: true, // Cookie will only be sent over HTTPS
             httpOnly: true, // Cookie cannot be accessed via client-side scripts
             sameSite: 'none', // Ensure the sameSite option is set correctly

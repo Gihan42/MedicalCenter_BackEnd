@@ -100,20 +100,53 @@ class PatientController {
             }
         });
         this.updatePatient = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            //     try {
+            //     let {email} = req.params ;
+            //     let updatedPatient=await Patient .findOneAndUpdate({email:email},req.body,{
+            //         new:true,
+            //     });
+            //         console.log("updated patient")
+            //     return res.status(200).json({message:"Successfully Updated",responseData:updatedPatient});
+            // } catch (error:unknown) {
+            //     if(error instanceof Error){
+            //         return res.status(500).json({message:error.message})
+            //     }else{
+            //         return res.status(500).json({message:"unknow error!"})
+            //     }
+            // }    
             try {
-                let { email } = req.params;
-                let updatedPatient = yield Patient_1.Patient.findOneAndUpdate({ email: email }, req.body, {
-                    new: true,
+                const { email, userName, password } = req.body;
+                if (!email || !userName || !password) {
+                    return res.status(400).json({ message: 'All fields are required' });
+                }
+                const oldUser = yield Patient_1.Patient.findOne({ email });
+                if (!oldUser) {
+                    return res.status(400).json({ message: 'User Not  Already Exists. Please Login' });
+                }
+                const saltRounds = 10;
+                const hashedPassword = yield bcrypt_1.default.hash(password, saltRounds);
+                const newUser = new Patient_1.Patient({
+                    email,
+                    userName,
+                    password: hashedPassword,
                 });
-                console.log("updated patient");
-                return res.status(200).json({ message: "Successfully Updated", responseData: updatedPatient });
+                const user = yield newUser.save();
+                const token = (0, generateToken_1.createAccessToken)(user._id);
+                res.cookie('token', token, {
+                    path: '/',
+                    expires: new Date(Date.now() + 86400000),
+                    secure: true,
+                    httpOnly: true,
+                    sameSite: 'none', // Ensure the sameSite option is set correctly
+                });
+                return res.status(200).json({ message: 'Patient logged in', responseData: { token } });
             }
             catch (error) {
                 if (error instanceof Error) {
                     return res.status(500).json({ message: error.message });
                 }
                 else {
-                    return res.status(500).json({ message: "unknow error!" });
+                    return res.status(500).json({ message: 'Unknown error' });
                 }
             }
         });
